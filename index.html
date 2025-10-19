@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Comments Sentiment Analyzer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .input-section {
+            margin: 20px 0;
+        }
+        #error {
+            color: red;
+            margin: 10px 0;
+        }
+        #loading {
+            display: none;
+            margin: 10px 0;
+        }
+        .chart-container {
+            margin: 20px 0;
+            height: 300px;
+        }
+        #keywordsCloud {
+            padding: 20px;
+            text-align: center;
+            line-height: 2;
+        }
+        #keywordsCloud span {
+            padding: 5px;
+            display: inline-block;
+        }
+        .card {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="d-flex align-items-center justify-content-center mb-4">
+            <img src="images/logo.jpg" alt="Logo" class="me-3" style="height: 200px; width: 200px;">
+            <h1 class="text-center mb-0">YouTube Comments Sentiment Analyzer</h1>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label for="videoId" class="form-label">YouTube Video ID or URL</label>
+                            <input type="text" class="form-control" id="videoId" placeholder="Enter video ID or URL">
+                        </div>
+                        <div class="mb-3">
+                            <label for="apiKey" class="form-label">YouTube API Key</label>
+                            <input type="text" class="form-control" id="apiKey" placeholder="Enter your API key">
+                        </div>
+                        <button id="analyzeBtn" class="btn btn-primary">Analyze Comments</button>
+                        <div id="loading" style="display: none;" class="alert alert-info">
+                            Analyzing comments... <div class="spinner-border spinner-border-sm" role="status"></div>
+                        </div>
+                        <div id="error" class="alert alert-danger" style="display: none;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Statistics</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="stats"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Video Metadata</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img id="thumbnail" src="" alt="Video Thumbnail" class="img-fluid">
+                            </div>
+                            <div class="col-md-8">
+                                <h4 id="title"></h4>
+                                <p><strong>Category:</strong> <span id="category"></span></p>
+                                <p><strong>Published:</strong> <span id="publishedAt"></span></p>
+                                <p><strong>Total Comments:</strong> <span id="commentCount"></span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Top Keywords</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="keywordsCloud" style="min-height: 200px;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Sentiment Distribution</h5>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="sentimentChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Questions vs Sentiment</h5>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="questionSentimentChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Comment Length Distribution</h5>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="lengthChart"></canvas>
+                        <div id="lengthStats" class="mt-3">
+                            <h6>Comment Length Statistics:</h6>
+                            <div class="row">
+                                <div class="col-6">
+                                    <p><strong>Average Length:</strong> <span id="avgLength">0</span> characters</p>
+                                    <p><strong>Total Characters:</strong> <span id="totalChars">0</span></p>
+                                </div>
+                                <div class="col-6">
+                                    <p><strong>Shortest:</strong> <span id="minLength">0</span> characters</p>
+                                    <p><strong>Longest:</strong> <span id="maxLength">0</span> characters</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Language Distribution</h5>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="languageChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Emotion Analysis</h5>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="emotionChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Questions vs Statements</h5>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="queryChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Detailed Comment Analysis</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table" id="detailedAnalysisTable">
+                                <thead>
+                                    <tr>
+                                        <th>Comment</th>
+                                        <th>Sentiment</th>
+                                        <th>Emotions</th>
+                                        <th>Question</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Sample Comments Analysis</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Comment</th>
+                                        <th>Sentiment Score</th>
+                                        <th>Emotions</th>
+                                        <th>Type</th>
+                                        <th>Language</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="sampleCommentsTable">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="row mt-4">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Sample Comments Analysis</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table" id="detailedSentimentTable">
+                                <thead>
+                                    <tr>
+                                        <th>Comment</th>
+                                        <th>Positive</th>
+                                        <th>Neutral</th>
+                                        <th>Negative</th>
+                                        <th>Overall</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

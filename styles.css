@@ -1,0 +1,542 @@
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.logo {
+    width: 100px;  /* Adjust logo size */
+    height: 100px;  /* Maintain aspect ratio for circular border */
+    margin-right: 30px;
+    border: 2px solid white;  /* White circular border */
+    border-radius: 50%;  /* Makes the border circular */
+    padding: 7px;  /* Creates gap between logo and circular border */
+}
+
+h1 {
+    margin: 0; /* Remove any default margin around the heading */
+    padding: 0;
+}
+
+
+/* Navigation Section */
+#main-nav {
+    background-color: Black; /* Light background */
+    border-bottom: 2px solid #ddd; /* Subtle line separating the nav */
+    text-align: center;
+    padding: 10px 0;
+	margin-top:3px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for depth */
+}
+
+#main-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: inline-flex; /* Horizontal layout */
+    gap: 20px; /* Spacing between items */
+}
+
+#main-nav ul li {
+    display: inline;
+}
+
+#main-nav ul li a {
+    text-decoration: none;
+    color: White;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#main-nav ul li a:hover {
+    background-color: White;
+    color: Black;
+	text-decoration: underline;
+}
+
+
+
+/* Header Section for Terms of Service and Privacy Policy */
+#terms-policy {
+    display: flex;
+    align-items: center; /* Vertically aligns image and heading */
+    padding: 20px;
+}
+
+#terms-policy .header-icon {
+    width: 40px; /* Adjust image size */
+    height: 40px; /* Adjust image size */
+    margin-right: 15px; /* Adds space between image and heading */
+}
+
+#terms-policy h1 {
+    font-size: 32px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #ffff; /* Keep the same color as before */
+    margin: 0;
+}
+/* Main content section for Terms and Privacy Policy pages */
+main {
+    padding-left: 40px;  /* Add padding inside the main content */
+    padding-right: 40px; /* Add padding inside the main content */
+    margin-left: 40px;   /* Optional: Add space outside the main content */
+    margin-right: 40px;  /* Optional: Add space outside the main content */
+    width: 80%;          /* Optionally set a width limit */
+    margin: 0 auto;      /* Centers the content */
+}
+/* Optional: Add more space to section content for readability */
+main section {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+
+
+/* Scroll to Top Button */
+#scrollToTopBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 1px;
+    background-color: transparent;
+    color: Black;
+    font-size: 24px;
+	width: 40px; /* Fixed button size */
+    height: 40px; /* Fixed button size */
+	line-height: 40px;
+    border: none;
+    border-radius:50%;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+   /*  display: none; Hidden by default */
+    transition: background-color 0.3s ease;
+	box-shadow: 0 0 0 2px white; /* White circle around the button */
+}
+
+#scrollToTopBtn:hover {
+	color: White;
+    background-color: Black;
+}
+
+
+
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+h1, h2, h3 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+header {
+    background-color: #000;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    font-size: 28px;
+    font-weight: bold;
+    margin: 0;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 10px 0 0;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px 15px;
+    transition: background-color 0.3s ease;
+    border-radius: 5px;
+}
+
+nav ul li a:hover {
+    background-color: #333;
+}
+
+a {
+    color: #0056b3;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Home Section */
+#home {
+    padding: 40px 20px;
+    text-align: center;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+}
+
+#home p {
+    font-size: 18px;
+    color: #333;
+}
+
+/* Analyze Comments Section */
+#analyze-comments {
+    padding: 40px 20px;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+}
+
+#analyze-comments h1 {
+    text-align: center;
+    font-size: 28px; /* Optional: Adjust the font size as per your preference */
+    margin-bottom: 20px; /* Optional: Adjust the margin to control spacing */
+}
+
+
+.input-form {
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+#videoId, #apiKey {
+    padding: 10px;
+    margin: 5px;
+    font-size: 16px;
+    width: 250px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: white; /* Black background */
+    color: black; /* White text */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 2px solid black;
+    transition: all 0.3s ease; /* Smooth transition effect */
+}
+
+button:hover {
+    background-color: black;
+    color: white; 
+}
+
+
+#labels {
+    display: flex;
+    justify-content: space-around;
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: 30px;
+}
+
+.sentiment-labels {
+    display: flex;
+    justify-content: space-around;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+    margin-top: 30px;
+}
+
+.sentiment-labels p {
+    background-color: #e0e0e0;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 16px;
+    color: #696969;
+}
+
+.sentiment-labels p strong {
+    color: Black;
+}
+
+
+/* Style for video title */
+#videoTitle {
+    text-align: center; /* Centers the video title */
+    font-size: 2rem;    /* Increases the font size */
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+#videoTitle span {
+    color: gray; /* Optional: Add a color for the video title text */
+    font-size: 2rem; /* Slightly larger text for the actual title */
+}
+
+#videoCategory {
+    text-align: center;  /* Center the category text */
+    font-size: 2rem;     /* Font size for visibility */
+    font-weight: bold;   /* Bold font weight */
+    margin-top: 10px;    /* Margin between title and category */
+    color: gray;         /* Optional: Category text color */
+}
+#videoTitle span {
+    color: gray; /* Optional: Add a color for the video title text */
+    font-size: 2rem; /* Slightly larger text for the actual title */
+}
+
+
+/* Charts Section */
+#charts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    margin-top: 20px;
+    padding: 20px;
+}
+
+canvas {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ccc;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+}
+
+/* About Us Section */
+#about-us {
+    padding: 40px 20px;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+}
+
+#about-us h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+#about-us p {
+    font-size: 16px;
+    color: #333;
+    line-height: 1.5;
+}
+
+#about-us ul {
+    padding-left: 20px;
+}
+
+#about-us ul li {
+    margin-bottom: 10px;
+}
+
+/* Need Help Section */
+#need-help {
+    padding: 40px 20px;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+}
+
+#need-help h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+#need-help p {
+    font-size: 16px;
+    color: #333;
+    line-height: 1.5;
+}
+
+#need-help ol {
+    padding-left: 20px;
+}
+
+#need-help ol li {
+    margin-bottom: 10px;
+}
+
+/* Contact Us Section */
+#contact-us {
+    padding: 40px 20px;
+    background-color: #fff;
+    text-align: center;
+    border-top: 1px solid #ddd;
+}
+
+#contact-us h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+#contact-us p {
+    font-size: 16px;
+    color: #333;
+}
+
+/* Footer */
+footer {
+    background-color: #000;
+    color: #fff;
+    padding: 15px 20px;
+    text-align: center;
+}
+
+footer p {
+    font-size: 14px;
+    margin: 0;
+}
+
+/* Scroll Behavior */
+html {
+    scroll-behavior: smooth;
+}
+
+
+/* Contact Us Section */
+#contact-us {
+    padding: 40px 20px;
+    background-color: #fff;
+    text-align: center;
+    border-top: 1px solid #ddd;
+}
+
+#contact-us h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+#contact-us p {
+    font-size: 16px;
+    color: #333;
+}
+
+/* Social Media Section */
+.social-media {
+    margin-top: 20px;
+}
+
+.social-media a {
+    margin: 0 10px;
+}
+
+.social-icon {
+    width: 35px;
+    height: 35px;
+    transition: transform 0.3s ease;
+}
+
+.social-icon:hover {
+    transform: scale(1.2);
+}
+
+
+.footer-links {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.footer-links button {
+    background-color: transparent; /* Make the button transparent */
+    color: #696969; /* Blue text */
+    border: none; /* No border */
+    cursor: pointer;
+    margin: 0 10px;
+    font-size: 14px;
+    text-decoration: none; /* Remove underline by default */
+    transition: text-decoration 0.3s ease, color 0.3s ease;
+}
+
+.footer-links button:hover {
+    text-decoration: underline; /* Add underline on hover */
+    color: #696969; /* Darker blue on hover */
+}
+
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    z-index: 1000;
+    overflow: auto;
+}
+
+.modal h2 {
+    color: white;
+    margin-bottom: 20px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+    background-color: black;
+    color: white;
+}
+
+.comments-table {
+    width: 90%;
+    max-width: 1200px;
+    background-color: white;
+    border-collapse: collapse;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.comments-table thead {
+    background-color: #f2f2f2;
+}
+
+.comments-table th, .comments-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+.comments-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.comments-table tr:hover {
+    background-color: #f5f5f5;
+}
